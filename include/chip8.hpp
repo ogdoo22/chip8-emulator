@@ -32,10 +32,14 @@ class CHIP8 {
         //Initializes and resets the CHIP-8 system
         void initialize();
 
-        //Destructor
-        ~CHIP8();
-        // int8_t fontSet[];
+        // load ROM file into memory
+        bool loadROM(const std::string& filename);
+
 };
+
+// Constant Variables
+constexpr int FONTSIZE = 80;
+constexpr uint16_t START_ADDRESS = 0x200;  // Starting address for the program counnter (main)
 
 
 #endif // CHIP8_HPP
