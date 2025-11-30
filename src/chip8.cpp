@@ -86,4 +86,7 @@ bool CHIP8::loadROM(const std::string& filename)
     // Read ROM into memory
     file.read(reinterpret_cast<char*>(&memory[START_ADDRESS]), size);
     file.close();
+
+    std::cout << "Loaded " << size << "bytes from " << filename << "\n";
+    return true;
 }

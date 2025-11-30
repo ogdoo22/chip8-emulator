@@ -4,6 +4,7 @@
 #define CHIP8_HPP
 
 #include <cstdint>
+#include <string>
 
 class CHIP8 {
     private:
