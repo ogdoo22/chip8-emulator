@@ -29,6 +29,7 @@ CHIP8::CHIP8()
     CHIP8::initialize();
 }
 
+// Initializes emulator by reseting memory and reloading FONTS
 void CHIP8::initialize()
 {
     // Clear memory - Fills all 4096 bytes in memory with 0. 
@@ -64,5 +65,25 @@ void CHIP8::initialize()
 
 bool CHIP8::loadROM(const std::string& filename)
 {
-    
+    std::ifstream file(filename,std::ios::binary | std::ios::ate);
+
+    if(!file.is_open()){
+        std::cerr << "Failed to open ROM: " << filename << "\n";
+        return false;
+    }
+
+    // Get file size
+    // might also be able to do something like: std::uintmax_t size = std::filesystem::file_size(filename);   (c++17)
+    std::streampos size = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    // Check if ROM fits in memory
+    if (size > (MEMORY_SIZE - START_ADDRESS)){
+        std::cerr << "ROM to large to fit in memory\n";
+        return false;
+    }
+
+    // Read ROM into memory
+    file.read(reinterpret_cast<char*>(&memory[START_ADDRESS]), size);
+    file.close();
 }

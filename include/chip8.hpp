@@ -40,6 +40,7 @@ class CHIP8 {
 // Constant Variables
 constexpr int FONTSIZE = 80;
 constexpr uint16_t START_ADDRESS = 0x200;  // Starting address for the program counnter (main)
+constexpr uint16_t MEMORY_SIZE = 4096;
 
 
 #endif // CHIP8_HPP
