@@ -1,0 +1,39 @@
+# Ignore object files
+*.o
+src/*.o
+
+# Ignore executable files
+chip8
+*.exe
+
+# Ignore temporary files or backups
+*~
+*.swp
+*.tmp
+
+# Ignore build directories if any
+build/
+bin/
+
+# Ignore editor configurations (add yours if applicable)
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore core dump files
+core
+core.*
+
+# Ignore logs
+*.log
+
+# Ignore coverage files
+*.gcda
+*.gcno
+*.gcov
+
+# Ignore CMake files and folders if any
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.user
