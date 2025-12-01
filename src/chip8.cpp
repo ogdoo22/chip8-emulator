@@ -219,6 +219,46 @@ void CHIP8::decode(uint16_t opcode){
                 }
             }
             break;
+
+            case 0xF000:
+            switch (opcode & 0x00FF) {
+                case 0x07:
+                    // FX07: Set VX = delay timer
+                    v[x] = delayTimer;
+                    break;
+                case 0x15:
+                    // FX15: Set delay timer = VX
+                    delayTimer = v[x];
+                    break;
+                case 0x18:
+                    // FX18: Set sound timer = VX
+                    soundTimer = v[x];
+                    break;
+                case 0x1E:
+                    // FX1E: Add VX to I
+                    indexRegister += v[x];
+                    break;
+                case 0x29:
+                    // FX29: Set I = location of sprite for digit VX
+                    indexRegister = v[x] * 5;  // Each font sprite is 5 bytes
+                    break;
+                case 0x33:
+                    // FX33: Store BCD representation of VX at I, I+1, I+2
+                    memory[indexRegister] = v[x] / 100;
+                    memory[indexRegister + 1] = (v[x] / 10) % 10;
+                    memory[indexRegister + 2] = v[x] % 10;
+                    break;
+                case 0x65:
+                    // FX65: Read V0 through VX from memory starting at I
+                    for (int j = 0; j <= x; j++) {
+                        v[j] = memory[indexRegister + j];
+                    }
+                    break;
+            }
+            break;
     }
+
+    // Increment program counter for next instruction
+    programCounter += 2;
 
 }
