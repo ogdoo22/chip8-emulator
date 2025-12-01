@@ -93,13 +93,15 @@ bool CHIP8::loadROM(const std::string& filename)
 }
 
 //fetch next instruction (2 bytes)
-uint16_t CHIP8::fetch(){
+uint16_t CHIP8::fetch()
+{
     uint16_t opcode = (memory[programCounter] << 8 | memory[programCounter + 1]);
     return opcode;
 }
 
 // Breaks the 16bit opcode into nibbles and runs instructions using those nibbles
-void CHIP8::decode(uint16_t opcode){
+void CHIP8::decode(uint16_t opcode)
+{
     uint8_t x = (opcode >> 8) & 0x0F;    // bits 8-11 (X)
     uint8_t y = (opcode >> 4) & 0x0F;    // bits 4-7  (Y)
     uint8_t n =  opcode       & 0x0F;    // bits 0-3  (N)
@@ -261,4 +263,37 @@ void CHIP8::decode(uint16_t opcode){
     // Increment program counter for next instruction
     programCounter += 2;
 
+} //end of decode function
+
+//Execute one CPU cycle
+void CHIP8::cycle()
+{
+    uint16_t opcode = fetch();
+    decode(opcode);
 }
+
+void CHIP8::updateTimers()
+{
+    if (delayTimer > 0){
+        delayTimer--;
+    }
+    if (soundTimer > 0){
+        soundTimer--;
+    }
+}
+
+void CHIP8::setKey(uint8_t key, bool pressed)
+{
+    if (key < 16)
+    {
+        if (pressed)
+        {
+            keys[key] = 1;
+        } else
+        {
+            keys[key] = 0;
+        }
+    }
+}
+
+

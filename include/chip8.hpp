@@ -36,6 +36,15 @@ class CHIP8 {
         // load ROM file into memory
         bool loadROM(const std::string& filename);
 
+        //Execute one CPU cycle
+        void cycle();
+
+        //Update timers (60Hz)
+        void updateTimers();
+
+        // Set key state
+        void setKey(uint8_t key, bool pressed)
+
 };
 
 // Constant Variables
