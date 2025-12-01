@@ -45,6 +45,12 @@ class CHIP8 {
         // Set key state
         void setKey(uint8_t key, bool pressed);
 
+        // Get display data for rendering
+        const uint8_t* getDisplay() const { return display; }
+
+        // Check if sound should play
+        bool shouldPlaySound() const { return soundTimer > 0; }
+
 };
 
 // Constant Variables
