@@ -43,7 +43,7 @@ class CHIP8 {
         void updateTimers();
 
         // Set key state
-        void setKey(uint8_t key, bool pressed)
+        void setKey(uint8_t key, bool pressed);
 
 };
 

@@ -1,5 +1,6 @@
 #include "chip8.hpp"
 #include <iostream>
+#include <SDL2/SDL.h>
 
 const int WINDOW_WIDTH = 640;
 const int WINDOW_HEIGHT = 320;
@@ -12,6 +13,18 @@ int main(int argc, char* argv[]){
         std::cout << "Usage: ./chip8 <rom_file>\n";
         return 1;
     }
+
+    //Initialize SDL
+
+    //Create Window
+
+    //Create Renderer
+
+    //Create Texture for CHIP-8 display
+
+    //Initialize CHIP-8 emulator
+
+    //Cleanup
 
     return 0;
 }

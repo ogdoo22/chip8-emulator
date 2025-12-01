@@ -140,6 +140,7 @@ void CHIP8::decode(uint16_t opcode)
             {
                 programCounter += 2;
             }
+            break;
         case 0x4000:
             // 4XNN: Skip next instruction if VX != NN
             if (v[x] != nn) {
